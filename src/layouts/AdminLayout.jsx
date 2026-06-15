@@ -24,6 +24,7 @@ function AdminLayout() {
 
                         <Nav.Link as={Link} to="/admin/dashboard">Inicio</Nav.Link>
                         <Nav.Link as={Link} to="/admin/users">Usuarios</Nav.Link>
+                        <Nav.Link as={Link} to="/admin/sports">Deportes</Nav.Link>
                         <Nav.Link>Estadísticas</Nav.Link>
                         <Nav.Link>Configuración</Nav.Link>
                         <Nav.Link as={Link} to="/admin/profile">Mi Perfil</Nav.Link>

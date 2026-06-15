@@ -1,17 +1,17 @@
-import { Row, Col, Card, Button } from "react-bootstrap"
+import { Row, Col, Card, Button, ProgressBar } from "react-bootstrap"
 
 function UserDashboard() {
     return (
         <>
-            <h2 className="mb-4">Bienvenido a SportClub</h2>
+            <h2 className="mb-4 text-primary">Bienvenido a SportClub</h2>
 
             <Row className="g-4">
-
                 <Col md={4}>
                     <Card>
                         <Card.Body>
                             <Card.Title>Mi Perfil</Card.Title>
-                            <p>Revisa tu información personal</p>
+                            <p>Nombre: Usuario</p>
+                            <p>Email: usuario@mail.com</p>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -20,7 +20,12 @@ function UserDashboard() {
                     <Card>
                         <Card.Body>
                             <Card.Title>Progreso</Card.Title>
-                            <p>70% completado</p>
+                            <ProgressBar now={70} label="70%" />
+                            <ul className="mt-3">
+                                <li>Fuerza</li>
+                                <li>Resistencia</li>
+                                <li>Flexibilidad</li>
+                            </ul>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -28,15 +33,28 @@ function UserDashboard() {
                 <Col md={4}>
                     <Card>
                         <Card.Body>
-                            <Card.Title>Clases</Card.Title>
-                            <Button>Reservar</Button>
+                            <Card.Title>Clases Disponibles</Card.Title>
+                            <p>Spinning</p>
+                            <p>CrossFit</p>
+                            <p>Yoga</p>
+                            <Button size="sm">Reservar</Button>
                         </Card.Body>
                     </Card>
                 </Col>
 
+                <Col md={12}>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Mis Reservas</Card.Title>
+                            <p>CrossFit – Lunes 18:00</p>
+                            <p>Yoga – Miércoles 19:00</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </Row>
         </>
     )
 }
+
 
 export default UserDashboard
