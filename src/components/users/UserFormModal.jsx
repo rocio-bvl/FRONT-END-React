@@ -9,9 +9,12 @@ const initialForm = {
     password: "",
 }
 
+// show controla si el modal está visible. handleClose cierra el modal.
+// handleSave envía los datos al componente padre. selectedUser permite saber si se está creando o editando.
 function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
     const [formData, setFormData] = useState(initialForm)
-
+    const [errors, setErrors] = useState({})
+    // useEffect carga los datos cuando se selecciona un usuario para editar.
     useEffect(() => {
         if (selectedUser) {
             setFormData({
@@ -33,8 +36,29 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
         })
     }
 
+    const validate = () => {
+        const newErrors = {}
+        if (!formData.full_name) {
+            newErrors.full_name = "Nombre obligatorio"
+        }
+        if (!formData.email) {
+            newErrors.email = "Correo obligatorio"
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Correo inválido"
+        }
+        if (!selectedUser && formData.password.length < 8) {
+            newErrors.password = "Mínimo 8 caracteres"
+        }
+        return newErrors
+    }
+
     const onSubmit = (event) => {
         event.preventDefault()
+        const validationErrors = validate();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
         handleSave(formData)
     }
 
@@ -55,8 +79,12 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
                             name="full_name"
                             value={formData.full_name}
                             onChange={handleChange}
+                            isInvalid={!!errors.full_name}
                             required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.full_name}
+                        </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -66,8 +94,12 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
+                            isInvalid={!!errors.email}
                             required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.email}
+                        </Form.Control.Feedback>
                     </Form.Group>
 
                     {!selectedUser && (
@@ -78,10 +110,15 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                isInvalid={!!errors.password}
                                 required
                             />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.password}
+                            </Form.Control.Feedback>
                         </Form.Group>
                     )}
+
                     <Form.Group className="mb-3">
                         <Form.Label>Rol</Form.Label>
                         <Form.Select name="role" value={formData.role} onChange={handleChange}>
@@ -91,10 +128,12 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
                         </Form.Select>
                     </Form.Group>
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Cancelar
                     </Button>
+
                     <Button variant="primary" type="submit">
                         Guardar
                     </Button>

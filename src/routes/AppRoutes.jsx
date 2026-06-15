@@ -2,11 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Home from "../pages/Home"
 import Login from "../pages/Login"
+import Register from "../pages/Register"
 import Unauthorized from "../pages/Unauthorized"
 
 import UserDashboard from "../pages/user/UserDashboard"
 import CoachDashboard from "../pages/coach/CoachDashboard"
 import AdminDashboard from "../pages/admin/AdminDashboard"
+import UsersPage from "../pages/admin/UsersPage"
 
 import UserLayout from "../layouts/UserLayout"
 import CoachLayout from "../layouts/CoachLayout"
@@ -23,6 +25,7 @@ function AppRoutes() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
                 
                 <Route path="/user" element={<RoleRoute allowedRoles={["user"]}><UserLayout /></RoleRoute>}>
@@ -35,9 +38,8 @@ function AppRoutes() {
                 
                 <Route path="/admin" element={<RoleRoute allowedRoles={["admin"]}><AdminLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="users" element={<UsersPage />} /> 
                 </Route>
-                
-                <Route path="/perfil" element={<ProtectedRoute><h1>Perfil del usuario autenticado</h1></ProtectedRoute>} />
             </Routes>
         </BrowserRouter>
         // Routes: agrupa las rutas del sistema, dentro se declara cada Route de la app

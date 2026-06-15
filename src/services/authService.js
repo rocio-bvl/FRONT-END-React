@@ -1,9 +1,9 @@
-const API_URL = "http://localhost: 3000/api/auth"
+const API_URL = "http://localhost:3000/api/auth"
 
 
 // Login contra el backend
 export async function loginUser(credentials) {
-    const response = await fetch("$API_URL)/Login", {
+    const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -11,7 +11,13 @@ export async function loginUser(credentials) {
         body: JSON.stringify(credentials),
     })
 
-    const data = await response.json()
+    let data
+
+    try {
+        data = await response.json()
+    } catch {
+        throw new Error("El servidor no respondió correctamente")
+    }
 
     if (!response.ok) {
         throw new Error(data.message || "Error al iniciar sesion")
@@ -39,11 +45,11 @@ export function getUser() {
 
 // Verificar si existe sesion
 export function isAuthenticated() {
-    return Boolean(getToken())
+    return !!getToken()
 }
 
 // Cerrar sesión 
 export function logout() {
-    localStorage.removeIten("token")
+    localStorage.removeItem("token")
     localStorage.removeItem("user")
 }

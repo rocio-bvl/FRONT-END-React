@@ -4,6 +4,7 @@ function getToken() {
     return localStorage.getItem("token")
 }
 
+//   agrega Content-Type y token de autorización
 function getHeaders() {
     return {
         "Content-Type": "application/json",
@@ -11,6 +12,7 @@ function getHeaders() {
     }
 }
 
+//            obtiene todos los usuarios desde el backend
 export async function getUsers() {
     const response = await fetch(API_URL, {
         method: "GET",
@@ -23,6 +25,7 @@ export async function getUsers() {
     return response.json()
 }
 
+//               envía un nuevo usuario al backend
 export async function createUser(userData) {
     const response = await fetch(API_URL, {
         method: "POST",
@@ -39,6 +42,7 @@ export async function createUser(userData) {
     return data
 }
 
+//                 actualiza un usuario existente
 export async function updateUser(id, userData) {
     const response = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
@@ -54,6 +58,7 @@ export async function updateUser(id, userData) {
     return data
 }
 
+//                elimina un usuario por id
 export async function deleteUser(id) {
     const response = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
