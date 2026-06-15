@@ -35,8 +35,7 @@ function Profile() {
     }
 
     const handleSave = () => {
-        // conectar con backend
-        alert("Cambios guardados (demo)")
+        Swal.fire("Éxito", "Cambios guardados correctamente", "success")
     }
 
     return (

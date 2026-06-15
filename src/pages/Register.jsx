@@ -88,6 +88,7 @@ function Register() {
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control
                                 name="full_name"
+                                placeholder="Ingrese su nombre completo"
                                 onChange={handleChange}
                                 isInvalid={!!errors.full_name}
                                 required
@@ -102,6 +103,7 @@ function Register() {
                             <Form.Control
                                 name="email"
                                 type="email"
+                                placeholder="Ingrese su correo"
                                 onChange={handleChange}
                                 isInvalid={!!errors.email}
                                 required
@@ -116,6 +118,7 @@ function Register() {
                             <Form.Control
                                 name="password"
                                 type="password"
+                                placeholder="Ingrese su contraseña"
                                 onChange={handleChange}
                                 isInvalid={!!errors.password}
                                 required
@@ -128,6 +131,12 @@ function Register() {
                         <Button className="mt-3 w-100" type="submit">
                             Registrarse
                         </Button>
+
+                        <section className="text-center mt-3">
+                            <p>
+                                <a href="/">Volver al inicio</a>
+                            </p>
+                        </section>
                     </Form>
                 </Card.Body>
             </Card>

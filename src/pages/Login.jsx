@@ -79,6 +79,17 @@ function Login() {
                                 "Ingresar"
                             )}
                         </Button>
+
+                        <section className="text-center mt-3">
+                            <p>
+                                ¿No tienes cuenta?{" "}
+                                <a href="/Register">Regístrate</a>
+                            </p>
+
+                            <p>
+                                <a href="/">Volver al inicio</a>
+                            </p>
+                        </section>
                     </Form>
                 </Card.Body>
             </Card>
