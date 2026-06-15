@@ -3,7 +3,7 @@ import { Row, Col, Card, Button } from "react-bootstrap"
 function CoachDashboard() {
     return (
         <>
-            <h2 className="mb-4">Panel Coac</h2>
+            <h2 className="mb-4">Panel Coach</h2>
 
             <Row className="g-4">
 

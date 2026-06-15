@@ -54,13 +54,17 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        const validationErrors = validate();
+
+        const validationErrors = validate()
+
         if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
+            Swal.fire("Error", Object.values(validationErrors)[0], "error")
+            return
         }
+
         handleSave(formData)
     }
+
 
     return (
         <Modal show={show} onHide={handleClose} centered>

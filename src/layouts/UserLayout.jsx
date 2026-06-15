@@ -26,7 +26,7 @@ function UserLayout() {
                         </Nav.Link>
                         <Nav.Link>Clases</Nav.Link>
                         <Nav.Link>Reservas</Nav.Link>
-                        <Nav.Link as={Link} to="/profile">
+                        <Nav.Link as={Link} to="/user/profile">
                             Mi Perfil
                         </Nav.Link>
                     </Nav>

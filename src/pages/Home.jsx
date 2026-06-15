@@ -35,7 +35,7 @@ function Home() {
                     Entrena con profesionales, mejora tu condición física y alcanza tus objetivos.
                 </p>
 
-                <Button as={Link} to="/login" variant="warning" size="lg">
+                <Button as={Link} to="/register" variant="warning" size="lg">
                     Comenzar ahora
                 </Button>
             </div>

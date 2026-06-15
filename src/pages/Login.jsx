@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 import { Alert, Button, Card, Container, Form, Spinner } from "react-bootstrap"
 import { loginUser, saveSession } from "../services/authService"
 
@@ -36,7 +37,7 @@ function Login() {
                 navigate("/user/dashboard")
             }
         } catch (error) {
-            setError(error.message)
+            Swal.fire("Error", error.message, "error")
         } finally {
             setLoading(false)
         }
@@ -47,8 +48,6 @@ function Login() {
             <Card style={{ width: "24rem" }} className="shadow">
                 <Card.Body>
                     <Card.Title className="text-center mb-4">SportClub Login</Card.Title>
-
-                    {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">

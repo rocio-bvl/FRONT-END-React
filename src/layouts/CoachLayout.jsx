@@ -26,7 +26,7 @@ function CoachLayout() {
                         </Nav.Link>
                         <Nav.Link>Mis Alumnos</Nav.Link>
                         <Nav.Link>Reportes</Nav.Link>
-                        <Nav.Link as={Link} to="/profile">
+                        <Nav.Link as={Link} to="/coach/profile">
                             Mi Perfil
                         </Nav.Link>
                     </Nav>

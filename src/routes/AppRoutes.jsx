@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
+import Profile from "../pages/Profile"
 import Unauthorized from "../pages/Unauthorized"
 
 import UserDashboard from "../pages/user/UserDashboard"
@@ -27,18 +28,21 @@ function AppRoutes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
-                
+
                 <Route path="/user" element={<RoleRoute allowedRoles={["user"]}><UserLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<UserDashboard />} />
+                    <Route path="profile" element={<Profile />} />
                 </Route>
-                
+
                 <Route path="/coach" element={<RoleRoute allowedRoles={["coach"]}><CoachLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<CoachDashboard />} />
+                    <Route path="profile" element={<Profile />} />
                 </Route>
-                
+
                 <Route path="/admin" element={<RoleRoute allowedRoles={["admin"]}><AdminLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="users" element={<UsersPage />} /> 
+                    <Route path="users" element={<UsersPage />} />
+                    <Route path="profile" element={<Profile />} />
                 </Route>
             </Routes>
         </BrowserRouter>

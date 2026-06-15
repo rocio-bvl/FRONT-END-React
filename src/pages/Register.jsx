@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Container, Card, Form, Button, Alert } from "react-bootstrap"
+import Swal from "sweetalert2"
 
 function Register() {
     const navigate = useNavigate()
@@ -48,7 +49,11 @@ function Register() {
         const validationErrors = validate()
 
         if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors)
+            Swal.fire({
+                icon: "error",
+                title: "Error en formulario",
+                text: Object.values(validationErrors)[0],
+            })
             return
         }
 
@@ -61,9 +66,14 @@ function Register() {
                 body: JSON.stringify(formData),
             })
 
-            navigate("/login")
+            Swal.fire({
+                icon: "success",
+                title: "Registro exitoso",
+            }).then(() => {
+                navigate("/login")
+            })
         } catch (err) {
-            setError("Error al registrarse")
+            Swal.fire("Error", "No se pudo registrar", "error");
         }
     }
 
@@ -72,8 +82,6 @@ function Register() {
             <Card style={{ width: "25rem" }}>
                 <Card.Body>
                     <h3 className="text-center">Registro</h3>
-
-                    {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form onSubmit={handleSubmit}>
                         <Form.Group>
