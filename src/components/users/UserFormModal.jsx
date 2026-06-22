@@ -13,7 +13,7 @@ const initialForm = {
 // handleSave envía los datos al componente padre. selectedUser permite saber si se está creando o editando.
 function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
     const [formData, setFormData] = useState(initialForm)
-    const [errors, setErrors] = useState({})
+    const [errors] = useState({})
     // useEffect carga los datos cuando se selecciona un usuario para editar.
     useEffect(() => {
         if (selectedUser) {

@@ -3,41 +3,41 @@ import { Modal, Button, Form } from "react-bootstrap"
 import Swal from "sweetalert2"
 import { createSport, updateSport } from "../services/sportService"
 
-function SportFormModal({ show, handleClose, sport, refresh }) {
-    const [formData, setFormData] = useState({
-        name: "",
-        objective: "",
-        duration: "",
-        status: true,
-    })
+
+const initialForm = {
+    name: "",
+    objective: "",
+    duration: Number,
+    status: true,
+}
+
+
+function SportFormModal({ show, handleClose, handleSave, sport, refresh }) {
+    const [formData, setFormData] = useState(initialForm)
 
     useEffect(() => {
         if (sport) {
             setFormData({
-                name: sport.name,
-                objective: sport.objective,
-                duration: sport.duration,
-                status: sport.status,
+                name: sport.name || "",
+                objective: sport.objective || "",
+                duration: sport.duration || Number(formData.duration),
+                status: sport.status || true,
             })
         } else {
-            setFormData({
-                name: "",
-                objective: "",
-                duration: Number(formData.duration),
-                status: true,
-            })
+            setFormData(initialForm)
         }
-    }, [sport])
+    }, [sport, show])
 
-    const handleChange = (e) => {
+    const handleChange = (event) => {
+        const { name, value } = event.target
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
+            [name]: value,
         })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const onSubmit = async (event) => {
+        event.preventDefault()
 
         if (
             formData.name.length < 3 ||
@@ -85,7 +85,7 @@ function SportFormModal({ show, handleClose, sport, refresh }) {
                 </Modal.Title>
             </Modal.Header>
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={onSubmit}>
                 <Modal.Body>
 
                     <Form.Group>

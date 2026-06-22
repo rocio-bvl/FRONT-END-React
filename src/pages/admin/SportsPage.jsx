@@ -84,8 +84,8 @@ function SportsPage() {
                         <th>Nombre</th>
                         <th>Objetivo</th>
                         <th>Duración</th>
-                        <th>Estado</th>
                         <th>Fecha de creación</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

@@ -1,5 +1,8 @@
 const API_URL = "http://localhost:3000/api/sport"
-const getToken = () => localStorage.getItem("token")
+
+function getToken() {
+    return localStorage.getItem("token")
+}
 
 
 export async function getSports() {
@@ -14,15 +17,19 @@ export async function getSports() {
 
 // crear deporte
 export async function createSport(sport) {
-    const res = await
+    const response = await
         fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${getToken()}`,
             },
+            body: JSON.stringify(sport)
         })
-    return res.json()
+
+    const data = await response.json()
+
+    return data
 }
 
 // actualizar deporte
@@ -33,6 +40,7 @@ export async function updateSport(id, sport) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${getToken()}`,
         },
+        body: JSON.stringify(sport) 
     })
     return res.json()
 }
